@@ -38,6 +38,36 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     _checkIfProductInCart();
   }
 
+  void showFullImageDialog(BuildContext context, String imageUrl) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          child: Stack(
+            children: [
+              InteractiveViewer(
+                // Allows zooming and panning
+                child: Image.network(
+                  imageUrl,
+                  fit: BoxFit.contain,
+                ),
+              ),
+              Positioned(
+                top: 10,
+                right: 10,
+                child: IconButton(
+                  icon: Icon(Icons.close, color: Colors.white, size: 30),
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   void dispose() {
     _scrollController.dispose();
@@ -126,57 +156,78 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       // First Image
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                              color: Colors.grey.shade300,
+                                      GestureDetector(
+                                        onTap: () {
+                                          showFullImageDialog(
+                                              context, images[0]);
+                                        },
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: Colors.grey.shade300),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          child: Image.network(
-                                            images[0],
-                                            fit: BoxFit.cover,
-                                            height: screenWidth * 0.4,
-                                            width: screenWidth * 0.4,
+                                            child: Image.network(
+                                              images[0],
+                                              fit: BoxFit.cover,
+                                              height: screenWidth * 0.4,
+                                              width: screenWidth * 0.4,
+                                            ),
                                           ),
                                         ),
                                       ),
                                       const SizedBox(height: 8.0),
 
-                                      // Additional Images (Two per row)
-                                      Wrap(
-                                        spacing: 8.0,
-                                        runSpacing: 8.0,
-                                        children: images
-                                            .skip(1)
-                                            .map(
-                                              (image) => ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    border: Border.all(
+                                      // Additional Images (2 per row)
+                                      GridView.builder(
+                                        shrinkWrap:
+                                            true, // Prevents GridView from taking infinite height
+                                        physics:
+                                            const NeverScrollableScrollPhysics(), // Disables GridView scrolling
+                                        gridDelegate:
+                                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount:
+                                              2, // Two images per row
+                                          crossAxisSpacing: 8.0,
+                                          mainAxisSpacing: 8.0,
+                                          childAspectRatio:
+                                              1, // Maintain square shape
+                                        ),
+                                        itemCount: images.length -
+                                            1, // Exclude first image
+                                        itemBuilder: (context, index) {
+                                          return GestureDetector(
+                                            onTap: () {
+                                              showFullImageDialog(
+                                                  context, images[index + 1]);
+                                            },
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
                                                       color:
-                                                          Colors.grey.shade300,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                  ),
-                                                  child: Image.network(
-                                                    image,
-                                                    fit: BoxFit.cover,
-                                                    height: screenWidth * 0.2,
-                                                    width: screenWidth * 0.2,
-                                                  ),
+                                                          Colors.grey.shade300),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                child: Image.network(
+                                                  images[index +
+                                                      1], // Skip the first image
+                                                  fit: BoxFit.cover,
+                                                  height: screenWidth * 0.2,
+                                                  width: screenWidth * 0.2,
                                                 ),
                                               ),
-                                            )
-                                            .toList(),
+                                            ),
+                                          );
+                                        },
                                       ),
                                     ],
                                   ),
