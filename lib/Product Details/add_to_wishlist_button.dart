@@ -34,7 +34,6 @@ class AddToWishlistButton extends StatelessWidget {
           if (isAvailable) {
             context.go('/wishlist');
           } else {
-            bool isLoggedIn = await _checkLoginStatus();
 
             int? userId = await SharedPreferencesHelper.getUserId();
             String formattedDate = getFormattedDate();
@@ -61,7 +60,7 @@ class AddToWishlistButton extends StatelessWidget {
             if (context.mounted) {
               PopupDialog(
                 parentContext: context,
-                childWidget: SignupContent(),
+                childWidget: const SignupContent(),
               ).show();
             }
           });
@@ -86,7 +85,5 @@ class AddToWishlistButton extends StatelessWidget {
     );
   }
 
-  Future<bool> _checkLoginStatus() async {
-    return await SharedPreferencesHelper.getLoginStatus();
-  }
+
 }

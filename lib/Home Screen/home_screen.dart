@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 
 import '../Component/text_style.dart';
@@ -42,6 +41,7 @@ class _MenScreenState extends State<MenScreen> {
           // Sticky Header2
           SliverPersistentHeader(
             pinned: true,
+
             delegate: Header2Delegate(
               child: const Header2(),
             ),
@@ -138,7 +138,7 @@ class _MenScreenState extends State<MenScreen> {
                                             color:
                                                 Colors.black26.withOpacity(0.2),
                                             blurRadius: 10.0,
-                                            offset: Offset(0, 6),
+                                            offset: const Offset(0, 6),
                                           ),
                                         ],
                                       ),

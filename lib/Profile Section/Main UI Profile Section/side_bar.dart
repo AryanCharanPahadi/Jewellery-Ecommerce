@@ -5,16 +5,16 @@ class SidebarMenu extends StatefulWidget {
   final Function(String) onItemSelected;
 
   const SidebarMenu({
-    Key? key,
+    super.key,
     this.isLargeScreen = false,
     required this.onItemSelected,
-  }) : super(key: key);
+  });
 
   @override
-  _SidebarMenuState createState() => _SidebarMenuState();
+  SidebarMenuState createState() => SidebarMenuState();
 }
 
-class _SidebarMenuState extends State<SidebarMenu> {
+class SidebarMenuState extends State<SidebarMenu> {
   String selectedItem = "Personal Information"; // Default selected item
 
   @override

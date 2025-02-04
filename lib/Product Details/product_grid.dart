@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -168,7 +167,7 @@ class _ProductGridMenState extends State<ProductGridMen> {
                                                 color: Colors.black26
                                                     .withOpacity(0.2),
                                                 blurRadius: 10.0,
-                                                offset: Offset(0, 6),
+                                                offset: const Offset(0, 6),
                                               ),
                                             ],
                                           ),
@@ -283,7 +282,7 @@ class _ProductGridMenState extends State<ProductGridMen> {
                                                                           parentContext:
                                                                               context,
                                                                           childWidget:
-                                                                              SignupContent(),
+                                                                              const SignupContent(),
                                                                         ).show();
                                                                       }
                                                                     });

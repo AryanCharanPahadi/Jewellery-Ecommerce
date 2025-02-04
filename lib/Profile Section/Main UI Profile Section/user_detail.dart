@@ -170,7 +170,7 @@ class _UserDetailScreenState extends State<UserDetailScreen>
         return const UserAddressCard();
 
       case "Order History":
-        return  OrderHistoryCard();
+        return  const OrderHistoryCard();
       case "Personal Information":
       default:
         return const UserDetailsCard();

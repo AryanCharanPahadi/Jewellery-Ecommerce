@@ -83,12 +83,12 @@ class OrderDetailRow extends StatelessWidget {
   final String status;
 
   const OrderDetailRow({
-    Key? key,
+    super.key,
     required this.orderId,
     required this.date,
     required this.amount,
     required this.status,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

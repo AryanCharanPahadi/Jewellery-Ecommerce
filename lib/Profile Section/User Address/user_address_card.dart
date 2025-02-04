@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:jewellary/Component/show_pop_up.dart';
 import 'package:jewellary/Component/text_style.dart';
 import 'package:jewellary/Profile%20Section/User%20Address/user_address_controller.dart';
@@ -7,7 +6,7 @@ import '../Add Address/add_address.dart';
 import 'package:get/get.dart';
 
 class UserAddressCard extends StatefulWidget {
-  const UserAddressCard({Key? key}) : super(key: key);
+  const UserAddressCard({super.key});
 
   @override
   State<UserAddressCard> createState() => _UserAddressCardState();
@@ -78,7 +77,7 @@ class _UserAddressCardState extends State<UserAddressCard> {
                   if (controller.addresses.isEmpty) {
                     return Center(
                       child: Padding(
-                        padding: EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.all(16.0),
                         child: Text('No addresses found',
                             style: getTextStyle(
                               fontSize: 16,

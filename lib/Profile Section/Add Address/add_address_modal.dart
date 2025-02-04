@@ -6,7 +6,7 @@ AddressModal addressModalFromJson(String str) =>
 String addressModalToJson(AddressModal data) => json.encode(data.toJson());
 
 class AddressModal {
-  int? address_id;
+  int? addressId;
   final String address1;
   final String address2; // Change to String type
   final String city; // Change to String type
@@ -17,7 +17,7 @@ class AddressModal {
   final String userId; // Change to String type
 
   AddressModal({
-    this.address_id,
+    this.addressId,
     required this.address1,
     required this.address2,
     required this.city,
@@ -29,7 +29,7 @@ class AddressModal {
   });
 
   factory AddressModal.fromJson(Map<String, dynamic> json) => AddressModal(
-        address_id: json["address_id"],
+    addressId: json["address_id"],
         address1: json["address1"],
         address2: json["address2"],
         city: json["city"],
@@ -41,7 +41,7 @@ class AddressModal {
       );
 
   Map<String, dynamic> toJson() => {
-        "address_id": address_id,
+        "address_id": addressId,
         "address1": address1,
         "address2": address2,
         "city": city,

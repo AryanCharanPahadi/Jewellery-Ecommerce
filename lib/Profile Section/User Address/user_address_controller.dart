@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import '../../Api Helper/api_helper.dart';
 import '../../Shared Preferences/shared_preferences_helper.dart';
@@ -30,7 +31,9 @@ class UserAddressController extends GetxController {
       final fetchedAddresses = await ApiService.getUserAddress(userId.value.toString());
       addresses.assignAll(fetchedAddresses);
     } catch (e) {
-      print("Error fetching addresses: $e");
+      if (kDebugMode) {
+        print("Error fetching addresses: $e");
+      }
     } finally {
       isLoading.value = false;
     }

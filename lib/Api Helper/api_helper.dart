@@ -103,7 +103,9 @@ class ApiService {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        print(data);
+        if (kDebugMode) {
+          print(data);
+        }
 
         // Check if 'data' exists and is a list
         if (data is Map<String, dynamic> && data['data'] is List) {
@@ -269,7 +271,7 @@ class ApiService {
       } else {
         var errorData = jsonDecode(response.body);
         if (context.mounted) {
-          showSnackBar(context, errorData['message'], Colors.green);
+          showSnackBar(context, errorData['message'], Colors.red);
         }
       }
       return {'success': false}; // Return false if lo,k,k,tj gin fails

@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         ),
         GoRoute(
           path: '/login-page',
-          builder: (context, state) => LoginPage(),
+          builder: (context, state) => const LoginPage(),
         ),
 
         // Route for UserDetailsScreen
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
         // Route for SignupContent (Authentication page)
         GoRoute(
           path: '/authPage',
-          builder: (context, state) => SignupContent(),
+          builder: (context, state) => const SignupContent(),
         ),
 
         // Route for AddToCart page

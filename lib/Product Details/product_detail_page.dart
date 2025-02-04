@@ -65,12 +65,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
     final Product loadedProduct = widget.product ?? _getProductFromArguments();
 
-    if (loadedProduct == null) {
-      return const Scaffold(
-        body: Center(child: Text("Product not found")),
-      );
-    }
-
     final images = loadedProduct.itemImg.split(',');
     final Map<String, String> specifications = loadedProduct.itemSize.isNotEmpty
         ? Map<String, String>.from(jsonDecode(loadedProduct.itemSize))

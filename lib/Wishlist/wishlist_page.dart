@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:jewellary/Component/text_style.dart';
 import 'package:jewellary/Wishlist/wishlist_controller.dart';
 import '../Component/text_container.dart';
@@ -91,8 +90,8 @@ class WishlistPage extends StatelessWidget {
         itemCount: controller.products.length,
         itemBuilder: (context, index) {
           final product = controller.products[index];
-          final images = product.itemImg?.split(',') ?? [];
-          final itemName = product.itemName ?? 'Unknown Product';
+          final images = product.itemImg.split(',');
+          final itemName = product.itemName;
           ValueNotifier<int> hoveredImageIndex = ValueNotifier<int>(0);
 
           return GestureDetector(

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Api Helper/api_helper.dart';
@@ -17,23 +18,42 @@ class LoginController extends GetxController {
       password: passwordController.text,
     );
 
-    // API login response
     final loginResponse = await ApiService.login(loginModal, context);
 
-    // Save login status and user details if login is successful
-    await SharedPreferencesHelper.saveLoginStatus(true);
-    await SharedPreferencesHelper.saveUserDetails(loginResponse);
+    if (kDebugMode) {
+      print("Login Response: $loginResponse");
+    } // Debugging
 
-    // Navigate to home page or dashboard
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (context.mounted) {
-        Navigator.pop(context); // Close the popup
+    // Check if login is successful
+    if (loginResponse['success'] == true) {
+      if (kDebugMode) {
+        print("Login Successful, saving data to SharedPreferences...");
       }
-    });
 
-    // Clear the form fields after submission
+      await SharedPreferencesHelper.saveLoginStatus(true);
+      await SharedPreferencesHelper.saveUserDetails(loginResponse);
 
-    clearFields();
+      var savedUser = await SharedPreferencesHelper.getUserDetails();
+      if (kDebugMode) {
+        print("Saved User in SharedPreferences: $savedUser");
+      }
+
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) {
+          Navigator.pop(context);
+        }
+      });
+
+      clearFields();
+    } else {
+      if (kDebugMode) {
+        print(
+          "Login Failed, error: ${loginResponse['message'] ?? 'Unknown error'}");
+      }
+
+      // Ensure SharedPreferences is NOT updated on failure
+      return;
+    }
   }
 
   // Clear input fields

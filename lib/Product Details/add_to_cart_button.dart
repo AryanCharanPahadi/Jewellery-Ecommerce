@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jewellary/Product%20Details/product_modal.dart';
-
 import '../Add To Cart/add_to_cart_modal.dart';
 import '../Api Helper/api_helper.dart';
 import '../Component/show_pop_up.dart';
@@ -22,6 +21,8 @@ class AddToCartButton extends StatelessWidget {
     required this.onCartUpdated,
   });
 
+
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -29,7 +30,7 @@ class AddToCartButton extends StatelessWidget {
         if (isInCart) {
           context.go('/add-to-cart');
         } else {
-          bool isLoggedIn = await _checkLoginStatus();
+          bool isLoggedIn = await LoginStatusHelper().checkLoginStatus();
           if (isLoggedIn) {
             int? userId = await SharedPreferencesHelper.getUserId();
             String formattedDate = getFormattedDate();
@@ -51,7 +52,7 @@ class AddToCartButton extends StatelessWidget {
               if (context.mounted) {
                 PopupDialog(
                   parentContext: context,
-                  childWidget: SignupContent(),
+                  childWidget: const SignupContent(),
                 ).show();
               }
             });
@@ -72,7 +73,5 @@ class AddToCartButton extends StatelessWidget {
     );
   }
 
-  Future<bool> _checkLoginStatus() async {
-    return await SharedPreferencesHelper.getLoginStatus();
-  }
+
 }

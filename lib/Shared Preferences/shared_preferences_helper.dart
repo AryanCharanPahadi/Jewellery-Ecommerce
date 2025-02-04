@@ -74,3 +74,9 @@ class SharedPreferencesHelper {
     return [];
   }
 }
+
+class LoginStatusHelper {
+  Future<bool> checkLoginStatus() async {
+    return await SharedPreferencesHelper.getLoginStatus();
+  }
+}

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:jewellary/Product%20Details/product_modal.dart';
 import '../../Api Helper/api_helper.dart';
@@ -24,9 +25,13 @@ class ProductDetailController extends GetxController {
       try {
         final products = await ApiService().fetchJewellaryProducts(product.value!.itemTitle);
         relatedProducts.value = products; // Assign fetched products to relatedProducts
-        print('Fetched related products: ${products.length}'); // Debug log
+        if (kDebugMode) {
+          print('Fetched related products: ${products.length}');
+        } // Debug log
       } catch (e) {
-        print('Error fetching related products: $e'); // Debug log
+        if (kDebugMode) {
+          print('Error fetching related products: $e');
+        } // Debug log
       }
     }
   }

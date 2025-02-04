@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jewellary/Component/show_pop_up.dart';
-import 'package:jewellary/Login%20Page/login_controller.dart';
 import '../../Component/custom_text.dart';
 import '../../Component/gradient_button.dart';
 

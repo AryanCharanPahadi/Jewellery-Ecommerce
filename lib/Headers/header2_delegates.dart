@@ -5,24 +5,32 @@ class Header2Delegate extends SliverPersistentHeaderDelegate {
 
   Header2Delegate({required this.child});
 
+  static const double smallScreenHeight = 110.0;
+  static const double defaultHeight = 60.0;
+
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    // Ensuring consistent height and proper layout
     return SizedBox.expand(
       child: Material(
-        elevation: overlapsContent ? 4 : 0, // Add shadow if content overlaps
+        elevation: overlapsContent ? 4 : 0,
         child: child,
       ),
     );
   }
 
   @override
-  double get maxExtent => 60.0; // Fixed maximum height
+  double get maxExtent => WidgetsBinding
+              .instance.platformDispatcher.views.first.physicalSize.width <
+          600
+      ? smallScreenHeight
+      : defaultHeight;
+
   @override
-  double get minExtent => 60.0; // Fixed minimum height
+  double get minExtent => maxExtent;
+
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return false; // Rebuild only if necessary
+    return false;
   }
 }

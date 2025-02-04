@@ -3,7 +3,7 @@ import 'package:jewellary/Component/text_style.dart';
 import '../../Shared Preferences/shared_preferences_helper.dart';
 
 class UserDetailsCard extends StatelessWidget {
-  const UserDetailsCard({Key? key}) : super(key: key);
+  const UserDetailsCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -141,11 +141,11 @@ class UserDetailRow extends StatelessWidget {
   final bool isLargeScreen;
 
   const UserDetailRow({
-    Key? key,
+    super.key,
     required this.label,
     required this.value,
     required this.isLargeScreen,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
