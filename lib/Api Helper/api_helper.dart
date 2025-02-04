@@ -11,7 +11,7 @@ import '../Sign Up/signup_modal.dart';
 import '../Wishlist/wishlist_modal.dart';
 
 class ApiService {
-  static const String _baseUrl = 'http://localhost/jewellary';
+  static const String _baseUrl = 'https://vedvika.com/jewellery/';
   static void showSnackBar(BuildContext context, String message, Color color) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
